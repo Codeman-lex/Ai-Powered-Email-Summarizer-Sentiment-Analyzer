@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # Backend API service
+  backend:
+    build: ./backend
+    container_name: intellimail-api
+    restart: always
+    volumes:
+      - ./backend:/app
+      - backend_data:/app/data
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - intellimail-network
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 --timeout 120 'app:create_app()'
+  
+  # Frontend React application
+  frontend:
+    build: ./frontend
+    container_name: intellimail-web
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - intellimail-network
+    environment:
+      - REACT_APP_API_URL=http://backend:8000/api
+  
+  # Redis for caching and task queue
+  redis:
+    image: redis:6-alpine
+    container_name: intellimail-redis
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - intellimail-network
+  
+  # MongoDB for data storage
+  mongodb:
+    image: mongo:5
+    container_name: intellimail-mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - intellimail-network
+  
+  # Celery for async task processing
+  celery:
+    build: ./backend
+    container_name: intellimail-celery
+    restart: always
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - intellimail-network
+    command: celery -A app.celery worker --loglevel=info
+  
+  # Celery beat for scheduled tasks
+  celery-beat:
+    build: ./backend
+    container_name: intellimail-celery-beat
+    restart: always
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - mongodb
+      - celery
+    networks:
+      - intellimail-network
+    command: celery -A app.celery beat --loglevel=info
+
+networks:
+  intellimail-network:
+    driver: bridge
+
+volumes:
+  backend_data:
+  redis_data:
+  mongodb_data: 

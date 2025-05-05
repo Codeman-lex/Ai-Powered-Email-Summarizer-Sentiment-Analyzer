@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}View Email{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="{{ url_for('list_emails') }}" class="btn btn-outline-primary">
+        <i class="bi bi-arrow-left"></i> Back to Inbox
+    </a>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">{{ email.subject }}</h3>
+            {% if email.sentiment == 'positive' %}
+            <span class="badge bg-success"><i class="bi bi-emoji-smile"></i> Positive</span>
+            {% elif email.sentiment == 'negative' %}
+            <span class="badge bg-danger"><i class="bi bi-emoji-frown"></i> Negative</span>
+            {% else %}
+            <span class="badge bg-secondary"><i class="bi bi-emoji-neutral"></i> Neutral</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex mb-4">
+            <div class="flex-shrink-0">
+                <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                    <i class="bi bi-person text-secondary"></i>
+                </div>
+            </div>
+            <div class="ms-3">
+                <div class="fw-bold">{{ email.sender }}</div>
+                <div class="text-muted">{{ email.date }}</div>
+            </div>
+        </div>
+
+        <div class="card mb-4 bg-light border-0">
+            <div class="card-body">
+                <h4 class="card-title"><i class="bi bi-stars text-warning"></i> AI Summary</h4>
+                <p class="card-text">{{ email.summary }}</p>
+            </div>
+        </div>
+
+        <h4 class="mb-3">Email Content</h4>
+        <div class="border rounded p-3 bg-white">
+            <pre class="email-content mb-0" style="white-space: pre-wrap; font-family: inherit;">{{ email.body }}</pre>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,96 @@
+{
+  "name": "intellimail-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/lab": "^5.0.0-alpha.144",
+    "@mui/material": "^5.14.9",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^4.35.3",
+    "axios": "^1.5.0",
+    "chart.js": "^4.4.0",
+    "date-fns": "^2.30.0",
+    "formik": "^2.4.5",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
+    "react-helmet-async": "^1.3.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.15.0",
+    "react-window": "^1.8.9",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.5",
+    "@types/lodash": "^4.14.198",
+    "@types/node": "^20.6.3",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "@types/react-window": "^1.8.5",
+    "@vitejs/plugin-react": "^4.0.4",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.4.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^0.34.4"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+} 

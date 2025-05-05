@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Email Summarizer - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <div class="card shadow p-5 mb-5 bg-white rounded">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-envelope-check text-primary"></i> Gmail Summarizer
+            </h1>
+            <p class="lead">
+                Use AI to summarize your Gmail inbox and analyze the sentiment of each email.
+            </p>
+            <hr class="my-4">
+            <div class="row text-start">
+                <div class="col-md-6">
+                    <h3><i class="bi bi-stars text-warning"></i> Key Features</h3>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Smart email summarization</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Sentiment analysis</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Secure Gmail integration</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Save time reading emails</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3><i class="bi bi-shield-lock text-info"></i> Privacy & Security</h3>
+                    <p class="mt-3">
+                        We only request read-only access to your Gmail.
+                        Your emails are never stored permanently, and all processing
+                        is done securely.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-google me-2"></i> Connect with Gmail
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
