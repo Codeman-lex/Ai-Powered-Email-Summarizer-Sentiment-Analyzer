@@ -1,6 +1,6 @@
 # IntelliMail: AI-Powered Email Intelligence Platform
 
-IntelliMail is a sophisticated email intelligence platform that transforms how professionals manage their inbox using advanced AI capabilities.
+This Agentic tool connects to your Gmail inbox and uses large language models to automatically summarize emails, classify sentiments, label content, and transform how professionals manage their inbox using advanced AI capabilities.
 
 ## Features
 
@@ -49,4 +49,4 @@ See the `/docs/screenshots` directory for application screenshots.
 
 ## For Developers
 
-Detailed API documentation and developer guides are available in the `/docs` directory. 
+Detailed API documentation and developer guides are available in the `/docs` directory.
